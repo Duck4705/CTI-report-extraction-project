@@ -1,1 +1,1 @@
-# CTI-report-extraction-project
+# Khung trích xuất kỹ thuật tấn công tự động dựa trên mô hình ngôn ngữ lớn với phân tích đa cấp độ từ và câu (An Automatic Attack Technique Extraction Framework Based on Large Language Models via Word- and Sentence-Level Analysis)
