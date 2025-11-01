@@ -1,0 +1,9 @@
+venv/
+vector_database/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+phase_1/
+phase_2/
+
