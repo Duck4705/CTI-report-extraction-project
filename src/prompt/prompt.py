@@ -195,17 +195,16 @@ You will be provided with:
 - Determine which technique(s) from the candidate list **best match** the behavior described in the sentence.
 - A sentence may match **multiple techniques** if it describes multiple distinct actions or behaviors.
 - **Only select techniques from the provided candidate list** - do not invent technique IDs.
-- Output your answer as a **JSON array of technique IDs** (e.g., ["T1210", "T1059"]).
-- If **none of the candidate techniques** adequately match the sentence, output **"None"**.
-- Do **not** include any explanation or extra text - only output the JSON array or "None".
 
-### Output Format:
-- Multiple matches: ["T1210", "T1059", "T1003"]
-- Single match: ["T1210"]
-- No match: None
+### Output Format (STRICT):
+- You must output **only** a valid JSON array of technique IDs, e.g., ["T1210", "T1059"].
+- No extra text, explanations, commentary, or formatting. Do not include any labels, markdown, or additional characters.
+- The output must match the following format exactly:
+    - Multiple matches: ["T1210", "T1059", "T1003"]
+    - Single match: ["T1210"]
 
 ### Example 1:
-**Sentence:**  
+**Sentence:**
 "It spreads to Microsoft Windows machines using several propagation methods, including the EternalBlue exploit for the CVE-2017-0144 vulnerability in the SMB service."
 
 **Candidate Techniques:**
@@ -215,11 +214,11 @@ You will be provided with:
   {"technique_id": "T1055", "description": "Process Injection", "rerank_score": 0.23}
 ]
 
-**Output:**  
+**Output:**
 ["T1210"]
 
 ### Example 2:
-**Sentence:**  
+**Sentence:**
 "The attacker used PowerShell to download and execute a malicious payload, then injected code into a running process to maintain persistence."
 
 **Candidate Techniques:**
@@ -229,25 +228,12 @@ You will be provided with:
   {"technique_id": "T1071", "description": "Application Layer Protocol", "rerank_score": 0.42}
 ]
 
-**Output:**  
+**Output:**
 ["T1059", "T1055"]
-
-### Example 3:
-**Sentence:**  
-"The report includes general information about the malware family's history and attribution."
-
-**Candidate Techniques:**
-[
-  {"technique_id": "T1082", "description": "System Information Discovery", "rerank_score": 0.35},
-  {"technique_id": "T1005", "description": "Data from Local System", "rerank_score": 0.28}
-]
-
-**Output:**  
-None
 
 ### Important Notes:
 - Prioritize techniques with higher rerank_score, but make the final decision based on semantic match with the sentence.
 - If a sentence describes multiple distinct actions, you can select multiple techniques.
 - Be strict: only select techniques that clearly match the described behavior.
-- Always output valid JSON format for the array, or the exact string "None".
+- **STRICT REQUIREMENT:** If your output does not match the required JSON array format exactly, it will be rejected. Do not include any extra text, explanations, or formatting.
 """ 
